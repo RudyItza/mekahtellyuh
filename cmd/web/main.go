@@ -10,17 +10,26 @@ import (
 )
 
 func main() {
-	dbConn, err := db.OpenDB()
+	// Open the DB connection using the db.InitDB function
+	dbConn, err := db.InitDB() // db is now being used correctly
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("Failed to open database: %v", err)
 	}
-	defer dbConn.Close()
+	defer func() {
+		if err := dbConn.Close(); err != nil {
+			log.Printf("Error closing database: %v", err)
+		}
+	}()
 
+	// Initialize the application with the database connection
 	application := &app.Application{
-		Stories: &data.StoryModel{DB: dbConn},
+		Stories: &data.StoryModel{DB: dbConn}, // Pass the DB connection to the StoryModel
 	}
 
+	// Start the HTTP server on port 4000
 	log.Println("Server starting on :4000...")
-	err = http.ListenAndServe(":4000", application.Routes())
-	log.Fatal(err)
+	err = http.ListenAndServe(":4000", application.Routes()) // Use the Routes method from the app
+	if err != nil {
+		log.Fatalf("Error starting server: %v", err)
+	}
 }
