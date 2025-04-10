@@ -1,0 +1,13 @@
+<h1>All Stories</h1>
+<a href="/story/submit">Submit New Story</a>
+<ul>
+  {{range .Stories}}
+    <li>
+      <h2>{{.Title}}</h2>
+      <p>{{.Content}}</p>
+      <a href="/story/view?id={{.ID}}">View</a> |
+      <a href="/story/edit?id={{.ID}}">Edit</a> |
+      <a href="/story/delete?id={{.ID}}">Delete</a>
+    </li>
+  {{end}}
+</ul>

@@ -1,0 +1,7 @@
+<h1>Edit Story</h1>
+<form method="post" action="/story/update">
+  <input type="hidden" name="id" value="{{.Story.ID}}">
+  <input type="text" name="title" value="{{.Story.Title}}" required><br>
+  <textarea name="content" required>{{.Story.Content}}</textarea><br>
+  <button type="submit">Update</button>
+</form>
