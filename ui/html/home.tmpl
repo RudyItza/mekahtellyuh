@@ -1,13 +1,47 @@
-<h1>All Stories</h1>
-<a href="/story/submit">Submit New Story</a>
-<ul>
-  {{range .Stories}}
-    <li>
-      <h2>{{.Title}}</h2>
-      <p>{{.Content}}</p>
-      <a href="/story/view?id={{.ID}}">View</a> |
-      <a href="/story/edit?id={{.ID}}">Edit</a> |
-      <a href="/story/delete?id={{.ID}}">Delete</a>
-    </li>
-  {{end}}
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            background-image: url('https://psicologaazalea.wordpress.com/wp-content/uploads/2018/10/giphy.gif?w=317&h=187');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .buttons a {
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        .buttons a:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to the Story Sharing Platform</h1>
+
+    <div class="buttons">
+        <a href="/story/submit">Submit New Story</a>
+        <br><br>
+        <a href="/story/view">View All Stories</a>
+    </div>
+
+</body>
+</html>

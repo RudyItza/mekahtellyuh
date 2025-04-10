@@ -1,3 +1,87 @@
-<h1>{{.Story.Title}}</h1>
-<p>{{.Story.Content}}</p>
-<a href="/">Back</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Stories</title>
+    <style>
+        body {
+            background-image: url('https://psicologaazalea.wordpress.com/wp-content/uploads/2018/10/giphy.gif?w=317&h=187');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .buttons a {
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        .buttons a:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 20px;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+        }
+        li h2 {
+            margin: 0;
+        }
+        li p {
+            margin: 10px 0;
+        }
+        .story-actions a {
+            color: lightgreen;
+            text-decoration: none;
+            padding: 5px;
+        }
+        .story-actions a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>All Stories</h1>
+
+    <div class="buttons">
+        <a href="/story/submit">Submit New Story</a> |
+        <a href="/">Back to Home</a> <!-- Button to go back to the homepage -->
+    </div>
+
+    <ul>
+        {{range .Stories}}
+            {{if .Title}} <!-- Check if the title exists and is not empty -->
+                <li>
+                    <h2>{{.Title}}</h2>
+                    <p>{{.Content}}</p>
+                    <div class="story-actions">
+                        <a href="/story/view?id={{.ID}}">View</a> |
+                        <a href="/story/edit?id={{.ID}}">Edit</a> |
+                        <a href="/story/delete?id={{.ID}}">Delete</a>
+                    </div>
+                </li>
+            {{end}}
+        {{end}}
+    </ul>
+
+</body>
+</html>
+

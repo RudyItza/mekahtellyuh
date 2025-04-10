@@ -1,9 +1,10 @@
 package app
 
 import (
-	"github.com/RudyItza/mekatellyuh/internal/data"
 	"net/http"
 	"strconv"
+
+	"github.com/RudyItza/mekatellyuh/internal/data"
 )
 
 func (app *Application) HomeHandler(w http.ResponseWriter, r *http.Request) {
@@ -16,17 +17,15 @@ func (app *Application) HomeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *Application) ViewStoryHandler(w http.ResponseWriter, r *http.Request) {
-	id, err := strconv.Atoi(r.URL.Query().Get("id"))
-	if err != nil || id <= 0 { // Ensure the ID is a valid positive integer
-		app.ClientError(w, http.StatusNotFound)
-		return
-	}
-	story, err := app.Stories.Get(id)
+	// Fetch all stories from your storage (database, etc.)
+	stories, err := app.Stories.GetAll() // Assuming you have a GetAll function in your Stories model
 	if err != nil {
-		app.ClientError(w, http.StatusNotFound)
+		app.ClientError(w, http.StatusInternalServerError)
 		return
 	}
-	app.Render(w, r, "view_story.tmpl", map[string]any{"Story": story})
+
+	// Render the template and pass the stories data
+	app.Render(w, r, "view_story.tmpl", map[string]any{"Stories": stories})
 }
 
 func (app *Application) SubmitStoryForm(w http.ResponseWriter, r *http.Request) {
