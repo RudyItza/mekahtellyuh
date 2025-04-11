@@ -4,34 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit Story</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('https://i.pinimg.com/originals/d1/f2/f5/d1f2f585c1fcbbf8d075b3de6f1ffe87.gif') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <h1>Submit Your Story</h1>
 
-    <form action="/story/create" method="POST"> <!-- Updated form action -->
-        <!-- Title field -->
-        <label for="title">Title</label>
-        <input type="text" id="title" name="title" required>
-        <br><br>
+    <div class="container">
+        {{if .Success}}
+            <div class="success-message">
+                Your story has been submitted successfully!
+            </div>
+        {{end}}
 
-        <!-- Content field -->
-        <label for="content">Content</label>
-        <textarea id="content" name="content" required></textarea>
-        <br><br>
+        <h1>Submit Your Story</h1>
 
-        <!-- Username field -->
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" required>
-        <br><br>
+        <form action="/story/create" method="POST">
+            <!-- Title field -->
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" required>
 
-        <!-- Email field -->
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-        <br><br>
+            <!-- Content field -->
+            <label for="content">Content</label>
+            <textarea id="content" name="content" required></textarea>
 
-        <!-- Submit button -->
-        <button type="submit">Submit</button>
-    </form>
+            <!-- Username field -->
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+
+            <!-- Email field -->
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <!-- Submit button -->
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 
 </body>
 </html>
