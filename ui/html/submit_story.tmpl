@@ -89,6 +89,12 @@
             text-align: center;
         }
 
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
         .copyright {
             text-align: center;
             font-size: 16px;
@@ -110,26 +116,40 @@
 
         <h1>Submit Your Story</h1>
 
-        <form action="/story/create" method="POST">
-            <!-- Title field -->
-            <label for="title">Title</label>
-            <input type="text" id="title" name="title" required>
+       <form action="/story/create" method="POST">
+    <!-- Title field -->
+    <label for="title">Title</label>
+    <input type="text" id="title" name="title" value="{{.Title}}">
+    {{if .Errors.title}}
+        <div class="error-message">{{.Errors.title}}</div>
+    {{end}}
 
-            <!-- Content field -->
-            <label for="content">Content</label>
-            <textarea id="content" name="content" required></textarea>
+    <!-- Content field -->
+    <label for="content">Content</label>
+    <textarea id="content" name="content">{{.Content}}</textarea>
+    {{if .Errors.content}}
+        <div class="error-message">{{.Errors.content}}</div>
+    {{end}}
 
-            <!-- Username field -->
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" required>
+    <!-- Username field -->
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" value="{{.Username}}">
+    {{if .Errors.username}}
+        <div class="error-message">{{.Errors.username}}</div>
+    {{end}}
 
-            <!-- Email field -->
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
+    <!-- Email field -->
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" value="{{.Email}}">
+    {{if .Errors.email}}
+        <div class="error-message">{{.Errors.email}}</div>
+    {{end}}
 
-            <!-- Submit button -->
-            <button type="submit">Submit</button>
-        </form>
+    <!-- Submit button -->
+    <button type="submit">Submit</button>
+</form>
+
+
     </div>
 
     <div class="buttons">

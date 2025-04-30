@@ -63,18 +63,48 @@
        .back-to-home:hover {
            background-color: rgba(0, 0, 0, 0.9);
        }
+       .error {
+           color: red;
+           font-size: 12px;
+           margin-top: 5px;
+       }
    </style>
 </head>
 <body>
 
    <div class="form-container">
        <h1>Edit Story</h1>
+
        <form method="post" action="/story/update">
            <input type="hidden" name="id" value="{{.Story.ID}}">
-           <input type="text" name="title" value="{{.Story.Title}}" required><br>
-           <textarea name="content" required>{{.Story.Content}}</textarea><br>
+
+           <!-- Title Field -->
+           <input type="text" name="title" value="{{.Story.Title}}" required placeholder="Title">
+           {{if .Errors.title}}
+               <div class="error">{{.Errors.title}}</div>
+           {{end}}
+
+           <!-- Content Field -->
+           <textarea name="content" required placeholder="Content">{{.Story.Content}}</textarea>
+           {{if .Errors.content}}
+               <div class="error">{{.Errors.content}}</div>
+           {{end}}
+
+           <!-- Username Field -->
+           <input type="text" name="username" value="{{.Story.Username}}" required placeholder="Username">
+           {{if .Errors.username}}
+               <div class="error">{{.Errors.username}}</div>
+           {{end}}
+
+           <!-- Email Field -->
+           <input type="email" name="email" value="{{.Story.Email}}" required placeholder="Email">
+           {{if .Errors.email}}
+               <div class="error">{{.Errors.email}}</div>
+           {{end}}
+
            <button type="submit">Update</button>
        </form>
+
        <a href="/" class="back-to-home">Back to Home</a> <!-- Button to go back to the homepage -->
    </div>
 

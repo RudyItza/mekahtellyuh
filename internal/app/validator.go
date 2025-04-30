@@ -20,15 +20,15 @@ func ValidateInputs(title, content, username, email string) map[string]string {
 	// Title validation
 	if !notBlank(title) {
 		errors["title"] = "Title cannot be blank."
-	} else if len(title) < 5 || len(title) > 100 {
-		errors["title"] = "Title must be between 5 and 100 characters."
+	} else if len(title) < 5 || len(title) > 30 {
+		errors["title"] = "Title must be between 5 and 30 characters."
 	}
 
 	// Content validation
 	if !notBlank(content) {
 		errors["content"] = "Content cannot be blank."
-	} else if len(content) < 500 {
-		errors["content"] = "Content must be at least 500 characters."
+	} else if len(content) > 800 {
+		errors["content"] = "Content must be at least 800 characters."
 	}
 
 	// Username validation
@@ -37,8 +37,8 @@ func ValidateInputs(title, content, username, email string) map[string]string {
 	} else {
 		if !usernameRegex.MatchString(username) {
 			errors["username"] = "Username must contain only letters, numbers, or underscores."
-		} else if len(username) < 3 || len(username) > 30 {
-			errors["username"] = "Username must be between 3 and 30 characters."
+		} else if len(username) < 3 || len(username) > 20 {
+			errors["username"] = "Username must be between 3 and 20 characters."
 		}
 	}
 
